@@ -9,36 +9,12 @@ const port = process.env.PORT || 8080
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// // Load mongoose package
-// var mongoose = require('mongoose');
-// // Connect to MongoDB and create/use database called todoAppTest
-// mongoose.connect('mongodb://localhost/todo');
-//
-// // Create a schema
-// var TodoSchema = new mongoose.Schema({
-//     name: String,
-//     completed: Boolean,
-//     note: String,
-//     updated_at: { type: Date, default: Date.now },
-// });
-//
-// // Create a model based on the schema
-// var Todo = mongoose.model('Todob', TodoSchema);
+// Load mongoose package
+var mongoose = require('mongoose');
+// Connect to MongoDB and create/use database called todoAppTest
+mongoose.connect('mongodb://localhost/banks');
 
-// // Create a todo in memory
-// var todoa = new Todo({name: 'Master NodeJS!', completed: false, note: 'Getting there...'});
-// // Save it to database
-// todoa.save(function(err){
-//     if(err)
-//         console.log(err);
-//     else
-//         console.log(todoa);
-// });
 
-// Todo.create({name: 'Create something with Mongoose', completed: true, note: 'this is one'}, function(err, todo){
-//     if(err) console.log(err);
-//     else console.log(todo);
-// });
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -53,6 +29,9 @@ router.get('/', function(req, res) {
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
+var banks = require('./routes/banks');
+
+app.use('/banks', banks);
 app.use('/api', router);
 
 
